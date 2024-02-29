@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>BspMonitorAngular</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="assets/img/icon.png">
+  
+  <link rel="stylesheet" href="assets/css/data-tbl.css">  
+
+  <link rel="stylesheet" href="assets/css/bootstrap.4.3.1.min.css">
+  <script src="assets/js/jquery.3.1.4.min.js">
+  </script>
+  
+  <script src="assets/js/bootstrap.4.3.1.min.js"></script>
+  <script src="assets/js/custom.js">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+ 
+  <!--script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script-->
+
+
+  <link rel="stylesheet" href="assets/css/formStyle.css">
+  <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+ 
+  <!-- link rel="manifest" href="manifest.webmanifest"-->
+  <meta name="theme-color" content="#1976d2">
+
+  <!--link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
+  <script src="assets/dist/js/adminlte.min.js"></script-->
+  <script>
+    __Zone_enable_cross_context_check = true;
+  </script>
+
+
+<script>
+  var browser=get_browser();
+  if(browser.name === "MSIE" || browser.name === "IE"){
+    alert("Browser do not support, please try in firefox or chrome");
+  }  
+
+// for browser cache issue
+  function checkCookie() {
+    var user=getCookie("bsp_monitor_v");
+    if (user != "20.09.28.1.52") {
+      window.location.reload(true);
+      setCookie("bsp_monitor_v", "20.09.28.1.52", 30);
+    }
+  }
+  function setCookie(cname,cvalue,exdays) {
+    document.cookie = cname + "=" + cvalue + ";path=/";
+  }
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+  // check using browser
+  function get_browser() {
+      var ua=navigator.userAgent,tem,M=ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || []; 
+      if(/trident/i.test(M[1])){
+          tem=/\brv[ :]+(\d+)/g.exec(ua) || []; 
+          return {name:'IE',version:(tem[1]||'')};
+          }   
+      if(M[1]==='Chrome'){
+          tem=ua.match(/\bOPR|Edge\/(\d+)/)
+          if(tem!=null)   {return {name:'Opera', version:tem[1]};}
+          }   
+      M=M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+      if((tem=ua.match(/version\/(\d+)/i))!=null) {M.splice(1,1,tem[1]);}
+      return {
+        name: M[0],
+        version: M[1]
+      };
+  }
+</script>
+
+
+</head>
+<body onload="checkCookie()">
+  <app-root></app-root>
+</body>
+</html>

@@ -1,0 +1,570 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+
+
+
+
+input, label, body, td, button, select, .ngb-dp-week, ng-autocomplete, textarea {
+    font-size : 0.8rem !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+  }
+  .label-sm{
+    font-weight: 600 !important;
+    padding-bottom: 0.15rem;
+    font-size : 0.8rem !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+  }
+  .error{
+    color : red;
+    font-size : 0.7rem !important;
+    padding-left: 0px !important;
+  }
+  legend.scheduler-border {
+      margin-bottom: 0px;   
+      width:inherit; /* Or auto */
+      padding: 1px 12px 0px 12px; /* To give a bit of padding on the left and right */
+      border-bottom:none;
+      font-size: .82rem;
+      font-weight: bold;
+      border-bottom: 1.5px solid #3f51b5;
+      background-color: #e8eaef;
+      border-radius: 2px;  
+  }
+  
+  button{
+     margin-left:5px;
+  }
+  li{
+     a{
+         cursor: pointer;
+     }
+  }
+  .toast-container{
+  margin-top: 2.5%;
+    .ngx-toastr{
+      padding: 7px 15px 2px 50px;
+    }
+  }
+  
+  .mina{
+   background-color: red;
+  }
+  .mdl-cls{
+  display: flex;
+  margin-bottom: 0rem;
+  }
+  td{// for table edit and delete icon  
+   i{
+     cursor: pointer;
+   }
+   text-align : center !important;
+  }
+  th {
+  text-align : center !important;  
+  }
+  .stepper-group{
+   padding-top: 1.2rem;
+  }
+  
+  // for customize form ui
+  @media screen and (min-width: 800px) {
+    .input-xs , input, ng-autocomplete, .form-control-sm{
+        height: 1.35rem !important;
+        padding: 0.05rem 0.35rem !important;
+        line-height: 1.5;
+        border-radius: 3px !important;
+        margin-top: 0rem !important;
+    }  
+  }
+  @media screen and (min-width: 550px) and (max-width: 800px) {
+    .input-xs , input, ng-autocomplete, .form-control-sm{
+      height: 1.35rem !important;
+      padding: 0.05rem 0.05rem !important;
+      line-height: 1.5;
+      border-radius: 3px !important;
+      margin-top: 0rem !important;
+  }
+    tbody tr select{
+      width: 14vw !important;
+    }
+  }
+  @media screen and (max-width: 550px) {
+    .input-xs , input, ng-autocomplete, .form-control-sm{
+        height: 1.35rem !important;
+        padding: 0.05rem 0.05rem !important;
+        line-height: 1.5;
+        border-radius: 3px !important;
+        margin-top: 0rem !important;
+    }
+    tbody tr select{
+      width: 22vw !important;
+    }
+  }
+  .input-group-xs>.form-control,
+  .input-group-xs>.input-group-addon,
+  .input-group-xs>.input-group-btn>.btn,
+  .btn, ng-autocomplete {
+    height: 1.55rem;
+    padding: 3px 5px;
+    line-height: 1.5;
+  }
+  .autocomplete-container {
+  height: 1.25rem !important;
+  box-shadow: none !important;
+  z-index: 9 !important;
+  input, .ng-star-inserted{
+    height: 1.25rem !important;
+    right: 0px !important;
+    a {
+      height: 1.25rem !important;
+      padding: .01rem 1rem !important;
+    }
+  }
+  }
+  .form-group{
+  margin-bottom: .4rem;
+  }
+  .form-control-sm{
+  padding: .015rem .5rem;
+  }
+  .mat-horizontal-stepper-header{
+  height : 35px !important;
+  }
+  // for imp
+  html, body { height: 100%; }
+  body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #f6f9f7;}
+  
+  // vs table
+  /* add by PH */ 
+  
+  .table-sm th{
+  vertical-align: middle;
+  background-color: #E8F5E9;//#ebffebf2;
+  input{
+    vertical-align: bottom;
+  }
+  }
+  .table-sm td{
+    vertical-align: middle;
+  }
+  .table-input td{
+    padding: 0rem 0.1rem;
+  }
+  .table-sm{
+  width:100% !important;
+  }
+  
+  @media screen and (max-width: 740px) {
+  .tbl-col-10 {
+    display: block;  border : 0px !important;  text-align : left !important;
+    thead { display: none}
+    tbody tr { min-height : 15px; padding-top : 10px;} /* for empty data table */
+    tbody tr td { min-height : 20px; }  
+    tr, td { display: block;  border : 0px !important;  text-align : left !important;}
+    tr {    
+      border-top: 1px solid #1d1d1d !important;  
+      width : 90vw;
+      padding-bottom : 2px;
+      position: relative;      
+      .form-control-sm{
+        width: 75% !important;
+      }
+    }
+      td:not(:first-child) {
+        margin-left: 4%;
+        padding: 4px 20px 4px 30% !important;
+        position: relative; 
+        text-align: left;
+    }
+      td:not(:first-child):before, td:not(:first-child):after {
+        left: 0;
+        position: absolute;
+        color : #2779AA;          
+        font-size: .75em;        
+    }  
+    .col-group-start {
+      margin-top: 25px !important;
+    }
+    .col-group-start:after {
+      color : #373757; top: -22px !important; font-weight: bold; margin-left : -20px;
+   }  
+  }
+  }
+  
+  @media screen and (max-width: 795px) {
+    .mobile-hide{
+      display: none;
+    }  
+  }
+  
+  @media screen and (max-width: 550px) {
+    .mobile-portait-hide{
+      display: none;
+    } 
+  }
+  
+  .mobile-search-toggle{
+    margin-bottom: 10px;
+  }  
+  .mobile-toggle-down{
+    width: .9em;
+    content: ''; 
+    margin-left: 42vw;
+    border-top: .6em solid;
+    border-right: 1em solid transparent;
+    border-bottom: 0;
+    border-left: 1em solid transparent;
+    color: #008060;
+  }
+  .mobile-toggle-line{
+    border-bottom: 2px solid #9cafaa;
+  }
+  .mobile-toggle-up{
+    width: .9em;
+    content: ''; 
+    margin-left: 42vw;
+    border-bottom: .6em solid;
+    border-right: 1em solid transparent;
+    border-top: 0;
+    border-left: 1em solid transparent;
+    color: #008060;
+  }
+  
+  @media screen and (max-width: 795px) {
+    .tbl-col-15 {
+      display: block;  border : 0px !important;  text-align : left !important;
+      thead { display: none}
+      tbody tr { min-height : 15px; padding-top : 10px;} /* for empty data table */
+      tbody tr td { min-height : 20px; }  
+      tr, td { display: block;  border : 0px !important;  text-align : left !important;}
+      tr {    
+        border-top: 1px solid #1d1d1d !important;  
+        width : 90vw;
+        padding-bottom : 2px;
+        position: relative;      
+        .form-control-sm{
+          width: 75% !important;
+        }
+      }
+        td:not(:first-child) {
+          margin-left: 4%;
+          padding: 4px 20px 4px 30% !important;
+          position: relative; 
+          text-align: left;
+      }
+        td:not(:first-child):before, td:not(:first-child):after {
+          left: 0;
+          position: absolute;
+          color : #2779AA;          
+          font-size: .75em;        
+      }  
+      .col-group-start {
+        margin-top: 25px !important;
+      }
+      .col-group-start:after {
+        color : #373757; top: -22px !important; font-weight: bold; margin-left : -20px;
+      }  
+    }
+  }
+  .tbl-div {
+     overflow-x: auto;
+     overflow-y: auto;
+     max-height: 72vh;
+     padding-top: 7px;
+  }
+  // @media screen and (min-width: 795px) {
+  table tr {
+    .col-pc-1{
+      width: 1vw !important;
+    }
+    .col-pc-2{
+      width: 2vw !important;
+    }
+    .col-pc-3{
+      width: 3vw !important;
+    }
+    .col-pc-4{
+      width: 4vw !important;
+    }
+    .col-pc-5{
+      width: 5vw !important;
+    }
+    .col-pc-6{
+      width: 6vw !important;
+    }
+    .col-pc-7{
+      width: 7vw !important;
+    }
+    .col-pc-8{
+      width: 8vw !important;
+    }
+    .col-pc-10{
+      width: 10vw !important;
+    }
+    .col-pc-12{
+      width: 12vw !important;
+    }
+    .col-pc-15{
+      width: 15vw !important;
+    }
+    .col-pc-20{
+      width: 20vw !important;
+    }
+    .col-pc-25{
+      width: 25vw !important;
+    }
+    }
+  
+  
+  .form-div {
+    margin-bottom: 1.2rem;
+    button{
+      margin-top: 27px;
+    }
+    .fa-calendar{
+      margin-top: 0px;
+    }
+  }
+  .btn-div1{
+    margin-right: -15px;
+  }
+  .btn-success, .btn-primary{
+    // background-color: #007bff;
+    min-width: 55px;
+  }
+  
+  .mat-tab-label-active {
+    background-color: #b9bbc4;
+  }
+  .mat-tab-label{
+    height: 27px !important;
+    opacity: 1 !important;
+    min-width: 120px !important;
+    padding: 0 19px !important;
+  }
+  .mat-tab-label-content{ font-size: .82rem; font-weight: bold}
+  
+  
+  #page-container {
+    position: relative;
+    min-height: 100vh;
+  }  
+  #content-wrap {
+    padding-bottom: 3rem;    /* Footer height */
+  }
+  .content-wrapper{
+    padding-bottom: 3rem;    /* Footer height */
+  }
+  
+  // custom css 5-02-2020
+  @media (min-width: 576px){
+    .from-input-left-align {
+        margin-left: -30px;
+    }
+  }
+  .mat-tab-header{
+    border-bottom: none;
+  }
+  
+  .card-header{
+    padding : .35rem 1.25rem !important;
+    // background-color: #c5d1e3;
+    // border-bottom: 2px solid #007bff;
+    background-color: #aaa;
+    border-bottom: 2px solid #008060;
+    
+    // 007bff
+  }
+  .card-body{
+  padding: .75rem;
+  
+    /* width */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+  
+    /* Track */
+    ::-webkit-scrollbar-track {
+      height: 7px;
+      background: #f1f1f1; 
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      height: 7px;
+      background: #888; 
+    }
+  
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555; 
+    }
+  }
+  
+  
+  // for date 
+  .popover-body {
+    top: auto !important;
+    left: auto !important;
+    position: fixed !important;
+    border: 1px solid #c5d1e3;
+    background-color: white;
+    padding: 0px 0px;
+    margin-left: -200px;
+    margin-top: 37px;  
+    .ngb-tp{
+      padding-left: 17px;
+      button{
+        margin-top: 0px !important;
+      }
+    }
+  }
+  ng-bootstrap-datetime-angular .btn-outline-secondary{
+    background: gray;
+    color: white;
+    border-radius: 3px;
+  }
+  .bs-popover-top .arrow{
+    display: none;
+  }
+  .btn-outline-secondary{
+    margin-top: 1px !important;
+  }
+  ngb-datepicker button{
+    margin-top: 5px !important;
+  }
+  
+  
+  @import "~ng-pick-datetime/assets/style/picker.min.css";
+  
+  .cdk-overlay-pane, .owl-dt-popup{
+    width: 230px;
+  }
+  
+  .owl-dt-popup td{
+    padding: 12px 12px !important;
+    width: 10% !important;
+  }
+  .owl-dt-inline-container .owl-dt-calendar, .owl-dt-popup-container .owl-dt-calendar {
+    height: 14rem;
+  }
+  .owl-dt-timer {
+    height: 4rem; 
+    padding-top: 0px;
+  }
+  .owl-dt-timer input{
+    width: 37px !important;
+  }
+  
+  .date-container{
+    position: relative;
+  }
+  .shadow-input {
+    position: absolute;
+    // top: 15px;
+    width: 0px;
+    height: 0px;
+    border: none;
+    padding: 0px !important;
+  }
+  span.remove-date{
+    position: absolute;
+    right: 16px;
+    top: 0px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .owl-dt-timer-hour12 {
+    padding-top: 10px;
+  }
+  .owl-dt-timer-hour12-box{
+    height: 25px;
+  }
+  
+  .fa-times{
+    font-size: 0.9rem;
+    padding: 3px 1px !important;
+    cursor: pointer;
+  }
+  .cdk-global-overlay-wrapper, .cdk-overlay-container {
+    z-index: 99999 !important;
+  }
+  
+  @media (min-width: 768px){
+    body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
+        transition: margin-left .3s ease-in-out;
+        margin-left: 0px !important;
+    }
+  }
+  
+  .swal2-popup{
+    width: 300px !important;
+  }
+  .swal2-confirm{
+    background-color: #008060 !important;
+  }
+  #swal2-content{
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .swal2-popup .swal2-styled {
+    border: 0;
+    border-radius: 3px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 500;
+    margin: 1px 5px 0 !important;
+    padding: 10px 32px;
+  }
+  /*Swal alert pop up over Modal*/
+  .swal2-container {
+    z-index: 10000 !important;
+  }
+ 
+/* TOASTR BUGFIX */
+#toast-container > div {
+  opacity: 1;
+}
+.toast {
+  font-size: initial !important;
+  border: initial !important;
+  backdrop-filter: blur(0) !important;
+}
+.toast-success {
+  background-color: #51A351 !important;
+}
+.toast-error {
+  background-color: #BD362F !important;
+}
+.toast-info {
+  background-color: #2F96B4 !important;
+}
+.toast-warning {
+  background-color: #F89406 !important;
+}
+  /* Model Box */
+  
+
+/* Overwrite the styles of the mat-dialog-container element globally, but only for those
+that have an id of `modal-component` */
+/* https://stackoverflow.com/a/48689004/9263761 */
+mat-dialog-container#modal-component {
+    border: 3px solid #ffff;
+    border-radius: 11px;
+    background-color: #fff;
+}
+
+.bs-datepicker-head{
+  padding-left: 28% !important;
+}
+
+/* Menu 
+.header .header-nav ul#nav-account ul.dropdown-menu,
+.header .header-nav ul#nav-library ul.dropdown-menu {
+  overflow-x: visible;
+} */
