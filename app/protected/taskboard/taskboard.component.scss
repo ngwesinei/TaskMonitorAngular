@@ -1,0 +1,132 @@
+
+.taskheader{
+    width:100% ;
+    margin:0px 0px 10px 0px; 
+    height: auto;
+    padding: 10px;
+    color:#16745a; font-weight:bold;
+    border: 0.1px solid #e3e3e3;
+    background-color:#ffffff;
+    border-radius: 6px;
+    flex-direction: column;
+  }
+  .taskcard{
+    width:100% ;
+    margin:0px 0px 10px 10px;  text-align: center;
+    min-height: 300px;
+    padding: 10px;
+    border: 0.1px solid #e3e3e3;
+    background-color:#f7f7f7;
+    border-radius: 6px;
+    flex-direction: column;
+    /*-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+     box-shadow: inset 0 1px 1px rgba(51, 40, 40, 0.05); 
+    box-shadow: 0 3px 12px -6px rgba(0, 0, 0, 0.54); */
+  }
+  .pop{
+    height: 50px;
+    width: 40%;
+    margin-left: 20px;
+    border: 1px solid saddlebrown;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.task-container {
+  width: 400px;
+  max-width: 100%;
+  margin: 0 25px 25px 0;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.task-list {
+  border: solid 1px #ccc;
+  min-height: 60px; max-height: 600px;
+  background: white;
+  border-radius: 4px;
+  overflow: auto;
+  display: block;
+}
+
+.task-box {
+  padding: 20px 10px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.task-box:last-child {
+  border-bottom: solid 1px #ccc;
+}
+
+.task-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder){
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+.modal-detail{
+  //min-width: 700px !important;
+  min-height: 550px !important;
+  margin: auto !important;
+}
+
+th{
+  color:#008060;font-weight: bold;
+}
+.rightcol{
+  color:#008060;
+  font-weight:bold;
+  font-size: 14px;
+}
+.leftcol{
+  color:#008060;
+  font-weight:bold;
+  margin-top: 10px;
+
+}
+.scheduler-border{
+  border-bottom: none !important;
+}
+.panel{
+  border: 1px solid #e5e4e2;
+  border-radius: 6px;
+  width:100%;
+  margin:0px 0px 0px 0px;
+  background: #f2f2f2;
+}
+.modal-body {    
+  top: 20px;
+  width: 60% !important;
+  height: auto;
+  background: #f4f5f4;
+  border:  1px solid #c5d1e3; 
+
+  /* margin exposes part of the modal background */
+  margin: 40px;
+}

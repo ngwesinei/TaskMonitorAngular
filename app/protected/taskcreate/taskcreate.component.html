@@ -1,0 +1,422 @@
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <div id="home"> 
+            <br><br> <br>
+                    
+            <div class="row" >
+                <div class="tasktype">
+                    <div class="row"> 
+                        <div class="col-sm-2  text-left">
+                            <label style="color: #008060;font-weight: bold;font-family: Arial, Helvetica, sans-serif;">Select Task Type</label>
+                        </div>
+                        <div class="col-sm-2  text-left"> 
+                            <select class="form-control form-control-sm col-sm-8" (change)="searchByTask(type)" [(ngModel)]="type" >
+                            <option *ngFor="let type of taskType;let i = index;" value={{type.tableValue}}>
+                                                {{type.tableName}}
+                            </option>
+                            </select>
+                        </div>
+                        <form [formGroup]="searchForm" class="col-sm-5">
+                       
+                            <label class="label">From:</label>
+                            <ng-container >
+                                <input class="shadow-input" formControlName="fromDate" [owlDateTime]="dt5">
+                                <input class="calendar" placeholder="Choose Date"
+                                                [owlDateTimeTrigger]="dt5" [value]="searchForm.value.fromDate | date:'dd/MM/yyyy'">  
+                                <owl-date-time #dt5 [pickerType]="'calendar'"></owl-date-time> 
+                            </ng-container>
+                            
+                                <label class="label">To:</label>
+                            <ng-container>
+                                <input class="shadow-input" formControlName="toDate" [owlDateTime]="dt6">
+                                <input class="calendar"  placeholder="Choose Date"
+                                                [owlDateTimeTrigger]="dt6" [value]="searchForm.value.toDate | date:'dd/MM/yyyy'">  
+                                <owl-date-time #dt6 [pickerType]="'calendar'"></owl-date-time> 
+                            </ng-container>  
+                            <label class="label">Status:</label>   
+                            <select class="status" formControlName="status"  >
+                                <option value='' selected>Select Status</option>
+                                <option *ngFor="let s of status;let i = index;" value={{s.tableValue}}>
+                                    {{s.tableName}}
+                                </option>
+                            </select>
+
+                            <button class="btn btn-sm  btn_search"  (click)="searchByDate()"><i class="fa fa-search"></i>Search</button>  
+                        </form>
+                        <div class="col-sm-3 form-group text-right">
+                            <button class="btn btn-danger btn-sm float-right" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;" (click)="deleteTaskData()" [disabled]="!taskList$"><i class="fa fa-trash"></i> Remove</button>
+                            <button class="btn btn-sm float-right" style="font-family: Arial, Helvetica, sans-serif;background-color:#008060;color:#fff;font-weight: bold;margin-right: 5px;"  [disabled]="!taskList$" (click)="saveTaskData()"><i class="fa fa-save"></i> Save</button>
+                            <button class="btn btn-sm float-right"  style="font-family: Arial, Helvetica, sans-serif;background-color:#008060;color:#fff;font-weight: bold;margin-right: 5px;" (click)="addNewTask()"><i class="fa fa-plus"></i> Add New Task</button>           
+                        </div>
+                                    
+                    </div>
+                </div>
+                        
+                <div class="taskform tbl-div form-group">
+                                        <br>
+                                        <table datatable [dtOptions]="dtOptions"  class="table table-bordered table-hover table-sm table-input table-striped task-tbl_filter tbl-col-15" *ngIf="taskList$" id="task-tbl"> 
+                                            <thead>
+                                            <tr > 
+                                                
+                                                <th></th>
+                                                <th> </th>
+                                                
+                                                <th><input  class="form-control form-control-sm"   [(ngModel)]="searchtask.tasktype" id="tasktyp" (keyup.enter)="searchData($event,'tasktyp')" placeholder="Enter Task" /></th>
+                                                <th> <input  class="form-control form-control-sm"  [(ngModel)]="searchtask.app" id="app" (keyup.enter)="searchData($event,'app')" placeholder="Enter application"/></th>
+                                                <th><input  class="form-control form-control-sm"   [(ngModel)]="searchtask.ticketid" id="ticketid" (keyup.enter)="searchData($event,'ticketid')" placeholder="Enter ticket Id"/></th>
+                                                <th><input  class="form-control form-control-sm"   [(ngModel)]="searchtask.ticket" id="ticket" (keyup.enter)="searchData($event,'ticket')" placeholder="Enter ticket"/></th>
+                                                <th>
+                                                    <ng-container>
+                                                            <input class="shadow-input" [(ngModel)]="searchtask.startDt" [owlDateTime]="dt2" >
+                                                            <input class="form-control form-control-sm" placeholder="Choose Date"
+                                                                    [owlDateTimeTrigger]="dt2" [value]="searchtask.startDt | date:'dd/MM/yyyy '" (keyup.enter)="searchData($event,'startdt')">  
+                                                            <owl-date-time #dt2 [pickerType]="'calendar'"></owl-date-time> 
+                                                        </ng-container>
+                                                </th>
+                                                <th>
+                                                    <ng-container>
+                                                            <input class="shadow-input" [(ngModel)]="searchtask.endDt" [owlDateTime]="dt4" >
+                                                            <input class="form-control form-control-sm" placeholder="Choose Date" style="min-width: 100%;"
+                                                                    [owlDateTimeTrigger]="dt4" [value]="searchtask.endDt | date:'dd/MM/yyyy '" (keyup.enter)="searchData($event,'enddt')">  
+                                                            <owl-date-time #dt4 [pickerType]="'calendar'"></owl-date-time> 
+                                                    </ng-container>
+                                                </th>
+                                                <th><input  class="form-control form-control-sm"  [(ngModel)]="searchtask.duration"  id="duration" (keyup.enter)="searchData($event,'duration')" placeholder="Enter duration"/></th>
+                                                <th><input  class="form-control form-control-sm"  [(ngModel)]="searchtask.priority"  id="priority" (keyup.enter)="searchData($event,'priority')" placeholder="Enter priority"/></th>
+                                                <th><input  class="form-control form-control-sm"  [(ngModel)]="searchtask.difficulty"  id="difficulty" (keyup.enter)="searchData($event,'difficulty')" placeholder="Enter difficulty"/> </th>
+                                                <th><input  class="form-control form-control-sm"  [(ngModel)]="searchtask.status"  id="status" (keyup.enter)="searchData($event,'status')" placeholder="Enter status"/></th>
+                                                <th *ngIf="adminAccess"><input  class="form-control form-control-sm"  [(ngModel)]="searchtask.fullname"  id="fullname" (keyup.enter)="searchData($event,'fullname')" placeholder="Enter Name"/></th>
+                                            
+                                            </tr>
+                                            <tr style="color: #008060;font-weight: bold;">
+                                                <th class="hidden" style="display: none;"></th>
+                                                <th class="col-pc-1" data-orderable="false">
+                                                  <input type="checkbox" (change)="checkAllLt($event)">
+                                                </th>   
+                                                 
+                                                <th class="col-pc-4" style="font-family: Arial, Helvetica, sans-serif;">Action</th>  
+                                                <th class="col-pc-6" style="font-family: Arial, Helvetica, sans-serif;">Task Type.</th>
+                                                <th class="col-pc-6" style="font-family: Arial, Helvetica, sans-serif;">Application Name</th>
+                                                <th class="col-pc-6" style="font-family: Arial, Helvetica, sans-serif;">Ticket ID </th>
+                                                <th class="col-pc-20" style="font-family: Arial, Helvetica, sans-serif;">Short Description</th>
+                                                <th class="col-pc-6"style="font-family: Arial, Helvetica, sans-serif;">Start Date</th>
+                                                <th class="col-pc-6" style="font-family: Arial, Helvetica, sans-serif;">End Date</th>
+                                    
+                                                <th class="col-pc-2" style="font-family: Arial, Helvetica, sans-serif;">Duration</th>
+                                                <th class="col-pc-4" style="font-family: Arial, Helvetica, sans-serif;">Priority</th>
+                                                <th class="col-pc-3" style="font-family: Arial, Helvetica, sans-serif;">Difficulty</th>
+                                                <th class="col-pc-4" style="font-family: Arial, Helvetica, sans-serif;">Status</th>
+                                                <th *ngIf="adminAccess" class="col-pc-3">Employee Name</th>
+                                                
+                                            </tr>
+                                   
+                                            </thead>
+                                            <tbody>
+                                                    
+ 
+                                                <tr *ngFor='let ls of (taskList$); let i = index' [ngClass]="{
+                                                    'error' : ls.err
+                                                 }">
+                                                    
+                                                    <td class="hidden" style="display:none;">{{ls.sortData}}</td>   
+                                                    <td>
+                                                        <input type="checkbox" [(checked)]="ls.checkFlag" (change)="checkOnels(ls, $event)">
+                                                    </td>    
+                                                    <td>
+                                                        <!-- <span *ngIf="enableEditIndex != i"> -->
+                                                        <div class="input-group"> 
+                                                                    
+                                                            <i class="fa fa-file-text-o" style="color: #008060; font-size: 18px;" aria-hidden="true" (click)="getComment('comment', ls, i)"></i> &nbsp;&nbsp;
+                                                            <!-- i *ngIf="enableEdit && enableEditIndex == i && ls.internalId" id="saveBtn" class="fa fa-refresh" style="color: #008060; font-size: 18px;"(click)="saveSegment(ls)" ></i-->
+                                                            <i *ngIf="(i != enableEditIndex || enableEditIndex == null) && ls.internalId " class="fa fa-edit" style="color: #008060; font-size: 18px;" (click)="enableEditMethod($event, i, ls)" ></i> 
+                                                                   
+                                                            <!--i *ngIf="!adminAccess && !taskEnable && ((ls.dtl_start_date=='null' || ls.dtl_start_date=='')||(ls.dtl_start_date!='null' && ls.dtl_end_date!='null' )) && (ls.status!='Closed') && (i != enableEditIndex || enableEditIndex == null) && ls.internalId " class="fa fa-clock-o" style="color: #008060; font-size: 18px;" aria-hidden="true" (click)="startTime('starttask',ls,i)"></i>
+                                                            <i *ngIf="!adminAccess && taskEnable && (ls.dtl_start_date!='null' && ls.dtl_end_date==='null') && (ls.status!='Closed') && (i != enableEditIndex || enableEditIndex == null) && ls.internalId " class="fa fa-clock-o" style="color: #e40a0a; font-size: 18px;" aria-hidden="true" (click)="stopTime('stoptask', ls, i)"></i> 
+                                                            <i *ngIf="adminAccess && ls.employeeNo===employeeno && !taskEnable  && ((ls.dtl_start_date=='null' || ls.dtl_start_date=='')||(ls.dtl_start_date!='null' && ls.dtl_end_date!='null' )
+                                                                && (ls.status!='Closed')) && (i != enableEditIndex || enableEditIndex == null) && ls.internalId " class="fa fa-clock-o" style="color: #008060; font-size: 18px;" aria-hidden="true" (click)="startTime('starttask',ls,i)"></i>
+                                                            <i *ngIf="adminAccess && ls.employeeNo===employeeno && taskEnable && (ls.dtl_start_date!='null' && ls.dtl_end_date==='null') 
+                                                                && (ls.status!='Closed') && (i != enableEditIndex || enableEditIndex == null) && ls.internalId " class="fa fa-clock-o" style="color: #e40a0a; font-size: 18px;" aria-hidden="true" (click)="stopTime('stoptask', ls, i)"></i> &nbsp; -->
+                                                            
+                                                            <i *ngIf="!adminAccess &&  ((i!=stpTimeIndex && !stpTime) && !taskEnable && ((ls.dtl_start_date=='null' || ls.dtl_start_date=='')||(ls.dtl_start_date!='null' && ls.dtl_end_date!='null' ))) && (ls.status!='Closed') && (i != enableEditIndex || enableEditIndex == null) && ls.internalId " class="fa fa-clock-o" style="color: #008060; font-size: 18px;" aria-hidden="true" (click)="startTime('starttask',ls,i)"></i>
+                                                            <i *ngIf="!adminAccess &&  ((i==stpTimeIndex && stpTime ) || taskEnable && (ls.dtl_start_date!='null' && ls.dtl_end_date==='null')) && (ls.status!='Closed') && (i != enableEditIndex || enableEditIndex == null) && ls.internalId " class="fa fa-clock-o" style="color: #e40a0a; font-size: 18px;" aria-hidden="true" (click)="stopTime('stoptask', ls, i)"></i>     
+                                                           
+                                                            <i *ngIf="adminAccess && ls.employeeNo===employeeno && ((i!=stpTimeIndex && !stpTime ) && (!taskEnable && ((ls.dtl_start_date=='null' || ls.dtl_start_date=='')||(ls.dtl_start_date!='null' && ls.dtl_end_date!='null' ))))
+                                                                && (ls.status!='Closed') && (i != enableEditIndex || enableEditIndex == null) && ls.internalId " class="fa fa-clock-o" style="color: #008060; font-size: 18px;" aria-hidden="true" (click)="startTime('starttask',ls,i)"></i>
+                                                            <i *ngIf="adminAccess && ls.employeeNo===employeeno && ((i==stpTimeIndex && stpTime ) || (taskEnable && (ls.dtl_start_date!='null' && ls.dtl_end_date==='null')))  
+                                                                && (ls.status!='Closed') && (i != enableEditIndex || enableEditIndex == null) && ls.internalId " class="fa fa-clock-o" style="color: #e40a0a; font-size: 18px;" aria-hidden="true" (click)="stopTime('stoptask', ls, i)"></i> &nbsp;
+                                                             
+                                                            <i *ngIf="(ls.internalId && enableEditIndex != i )|| (ls.internalId && !enableEdit)" class="fa fa-list" style="color: #008060; font-size: 18px;" (click)="taskHistory('taskhistory',ls,i)" ></i>&nbsp;
+                                                            <i *ngIf="(ls.internalId && enableEditIndex != i )|| (ls.internalId && !enableEdit)" class="fa fa-trash" style="color: #dc3545; font-size: 18px;" (click)="deleteRow($event, i, ls)" ></i>
+                                                            
+                                                        </div> 
+                                                        <!-- </span> -->  
+                                                    </td> 
+                                                                    
+                                                    <td>
+                                                        <span *ngIf="(ls.internalId && enableEditIndex != i )|| (ls.internalId && !enableEdit)">{{ls.taskTypeDesc}}</span>
+                                                        <select class="form-control form-control-sm col-sm-12"  (change)='changeTaskType(ls)' [(ngModel)]="ls.taskType"  *ngIf="(enableEdit && enableEditIndex == i)|| !ls.internalId">
+                                                                <option value='' selected>Select Type</option>
+                                                                <option *ngFor="let type of lovTask;let i = index;" value={{type.tableValue}}>
+                                                                    {{type.tableName}}
+                                                                </option>
+                                                        </select>
+                                                        <!-- input (blur)="checkValidJointNo(wm)" class="form-control form-control-sm"  [(ngModel)]="ls.taskType" *ngIf="enableEdit && enableEditIndex == i && !ls.internalId" /-->                        
+                                                    </td>
+                                                    <td> 
+                                                        <span *ngIf="(ls.internalId && enableEditIndex != i ) || (ls.internalId && !enableEdit)">{{ls.application}}</span>
+                                                        <select class="form-control form-control-sm col-sm-12"  [(ngModel)]="ls.application"   *ngIf="(enableEdit && enableEditIndex == i) || !ls.internalId">
+                                                                <option value='' selected>Select Apps</option>
+                                                                <option *ngFor="let app of application;let i = index;" value={{app.tableValue}}>
+                                                                    {{app.tableName}}
+                                                                </option>
+                                                        </select>    
+                                                    </td>
+                                                    <td>
+                                                            <span *ngIf="(ls.internalId && enableEditIndex != i )|| (ls.internalId && !enableEdit)">{{ls.ticketId}} </span>
+                                                            <input  class="form-control form-control-sm"  [(ngModel)]="ls.ticketId" *ngIf="(enableEdit && enableEditIndex == i && enableTicket) || (!ls.internalId && enableTicket)"/>                        
+                                                    </td>
+                                                    <td>
+                                                        <span *ngIf="(ls.internalId && enableEditIndex != i )|| (ls.internalId && !enableEdit)">{{ls.ticket}}</span>
+                                                        <input  class="form-control form-control-sm"  [(ngModel)]="ls.ticket"  [disabled]="enableTicket" *ngIf="(enableEdit && enableEditIndex == i) || !ls.internalId "/>                        
+                                                    </td>
+                                
+                                                    <td>
+                                                        <span *ngIf="(ls.internalId && enableEditIndex != i )|| (ls.internalId && !enableEdit)">{{ls.startDate | date:'dd/MM/yyyy HH:mm:ss'}}</span>
+                                                        <ng-container *ngIf="(enableEdit && enableEditIndex == i) || !ls.internalId">
+                                                            <!-- <input class="form-control form-control-sm" [(ngModel)]="ls.startDate" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" (ngModelChange)="valuechange($event)" placeholder="Choose Date&Time">
+                                                            <owl-date-time #dt1></owl-date-time> -->
+                                                            <input class="shadow-input" [(ngModel)]="ls.startDate" [owlDateTime]="dt1">
+                                                            <input class="form-control form-control-sm" placeholder="Choose Date&Time"
+                                                                    [owlDateTimeTrigger]="dt1" [value]="ls.startDate | date:'dd/MM/yyyy HH:mm:ss'">  
+                                                            <owl-date-time #dt1></owl-date-time> 
+                                                        </ng-container>
+                                                    </td>
+                                                    <td>
+                                                            <span > {{ls.endDate | date:'dd/MM/yyyy HH:mm:ss'}}</span>
+                                                            <!-- <input class="form-control form-control-sm" [disabled]="true" [(ngModel)]="ls.endDate"  *ngIf="(enableEdit && enableEditIndex == i) || !ls.internalId"/>   -->
+   
+                                                    </td>
+                                                    <td>
+                                                            <span *ngIf="(ls.internalId && enableEditIndex != i ) || (ls.internalId && !enableEdit)"> {{ls.duration}}</span>
+                                                            <input class="form-control form-control-sm"  [(ngModel)]="ls.duration" (change)="valuechange($event,ls.internalId)" (keypress)="numberOnly($event)" *ngIf="(enableEdit && enableEditIndex == i) || !ls.internalId"/>                        
+                                                    </td>
+                                                    <td>
+                                                        <span *ngIf="(ls.internalId && enableEditIndex != i ) || (ls.internalId && !enableEdit)">{{ls.priorityDesc}}</span>
+                                                        <select class="form-control form-control-sm col-sm-12" (change)='changePriority(ls)' [(ngModel)]="ls.priority"  *ngIf="(enableEdit && enableEditIndex == i) || !ls.internalId">
+                                                                <option value='' selected>Select Priority.</option>
+                                                                <option *ngFor="let p of priority;let i = index;" value={{p.tableValue}}>
+                                                                    {{p.tableName}}
+                                                                </option>
+                                                        </select> 
+                                                       
+                                                    </td>
+                                                    
+                                                    <td>
+                                                            <span *ngIf="(ls.internalId && enableEditIndex != i) || (ls.internalId && !enableEdit)">{{ls.difficulty}}</span>
+                                                            <select class="form-control form-control-sm col-sm-12" [(ngModel)]="ls.difficulty" *ngIf="(enableEdit && enableEditIndex == i) || !ls.internalId">
+                                                                <option value=null selected>Select Difficulty</option>
+                                                                <option *ngFor="let d of difficulty;let i = index;" value={{d.tableValue}}>
+                                                                    {{d.tableName}}
+                                                                </option>
+                                                            </select>                             
+                                                    </td>
+                                
+                                                    <td>
+                                                        <span *ngIf="(ls.internalId && enableEditIndex != i ) || (ls.internalId && !enableEdit)">{{ls.status}}</span>
+                                                        <select class="form-control form-control-sm col-sm-12"  [(ngModel)]="ls.status" *ngIf="(enableEdit && enableEditIndex == i) || !ls.internalId">
+                                                                <option value='' selected>Select Status</option>
+                                                                <option *ngFor="let s of status;let i = index;" value={{s.tableValue}}>
+                                                                    {{s.tableName}}
+                                                                </option>
+                                                        </select> 
+                                                        <!--input  class="form-control form-control-sm"  [(ngModel)]="ls.status" *ngIf="enableEdit && enableEditIndex == i"/-->                        
+                                                    </td>
+                                                    <td *ngIf="adminAccess">
+                                                        <span >{{ls.full_NAME}}</span> <span *ngIf="(enableEdit && enableEditIndex == i) || !ls.internalId ">{{employeename}}</span> 
+ 
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                            
+            </div>
+        </div>
+    </section>
+</div>
+
+<modal id="comment" > 
+    <div class="modal modal-cmmt">
+        <div class="modal-body col-sm-11 mx-auto" >
+            <ul class="mdl-cls justify-content-end">
+                <button class="mdl-cls justify-content-end btn btn-danger btn-sm" (click)="closeModal('comment')">
+                    <i class="fa fa-close"></i>
+                </button>                
+            </ul>
+
+            <fieldset class="border p-2">
+            <legend class="scheduler-border">Long Description:</legend>  
+            <div class="col-pc-6"> 
+            <textarea class="form-control" [disabled]="!enableEdit" [(ngModel)]="globalRemark" rows="15" cols="50" > </textarea> 
+            </div>
+            <button class="btn btn-sm float-left" style="background-color:#008060;color:#fff;font-weight: bold; margin-top: 10px;padding:5px 10px 5px 10px"  [disabled]="!taskList$" (click)="saveComment('comment')">OK</button>
+   
+            </fieldset>
+        </div>
+    </div>
+    <div class="modal-background" ></div>
+ </modal>
+ <modal id="starttask">
+        <div class="modal modal-str" >
+            <div class="modal-body col-sm-11 mx-auto">
+                <ul class="mdl-cls justify-content-end">
+                    <button class="mdl-cls justify-content-end btn btn-danger btn-sm" (click)="closeModal('starttask')">
+                        <i class="fa fa-close"></i>
+                    </button>                
+                </ul>
+    
+                <fieldset class="border p-2">
+                  
+                <legend class="scheduler-border">Start Description:</legend> 
+                
+                <div class="col-pc-6">         
+                <textarea class="form-control" [(ngModel)]="startDateRemark" rows="3" cols="10" placeholder="Enter Description. Maximum length of Description is 100." maxlength="100"> </textarea> 
+                </div>
+                
+                <button class="btn btn-sm float-left" style="background-color:#008060;color:#fff;font-weight: bold; margin-top: 10px;padding:5px 10px 5px 10px"  (click)="saveStartDate('starttask')">Save</button>
+       
+                </fieldset>
+            </div>
+        </div>
+        <div class="modal-background"></div>
+</modal>
+
+<modal id="stoptask" >
+    <div class="modal modal-stp">
+        <div class="modal-body col-sm-11 mx-auto">
+            <ul class="mdl-cls justify-content-end">
+                <button class="mdl-cls justify-content-end btn btn-danger btn-sm" (click)="closeModal('stoptask')">
+                    <i class="fa fa-close"></i>
+                </button>                
+            </ul>
+
+            <fieldset class="border p-2">
+              
+            <legend class="scheduler-border">Percentage & Remark:</legend> 
+            <div class="row"> 
+                    <div class="col-6"><span style="color:#008060;font-weight: bold">Start Date </span></div>
+                    <div class="col-6"><span style="color:#008060;font-weight: bold">End Date </span></div>
+            </div>  
+            <div class="row"> 
+                    <div class="col-6"><span>{{strDate | date:'dd/MM/yyyy HH:mm:ss' }}</span></div>
+                    <div class="col-6"><span>{{stpDate | date:'dd/MM/yyyy HH:mm:ss' }}</span></div>
+            </div> <br>
+            <div class="row"> 
+                    <div class="col-6"><span style="color:#008060;font-weight: bold">Revised Start Date </span></div>
+                    <div class="col-6"><span style="color:#008060;font-weight: bold">Revised End Date </span></div>
+            </div>   
+            <div class="row">
+                <div class="col-6"> 
+                        <ng-container >
+                                <input class="shadow-input" [(ngModel)]="revStrDate" [owlDateTime]="dt3">
+                                <input class="form-control form-control-sm" placeholder="Revised Start Date"
+                                        [owlDateTimeTrigger]="dt3" [value]="revStrDate | date:'dd/MM/yyyy HH:mm:ss'">  
+                                <owl-date-time #dt3></owl-date-time> 
+                        </ng-container>
+                </div>
+                <div class="col-6"> 
+                        <ng-container >
+                                <input class="shadow-input" [(ngModel)]="revEndDate" [owlDateTime]="dt4">
+                                <input class="form-control form-control-sm" placeholder="Revised End Date"
+                                        [owlDateTimeTrigger]="dt4" [value]="revEndDate | date:'dd/MM/yyyy HH:mm:ss'">  
+                                <owl-date-time #dt4></owl-date-time> 
+                        </ng-container>
+                </div>
+            </div> <br>
+            <div class="row"> 
+                    <div class="col-12"><span style="color:#008060;font-weight: bold">Percentage </span></div>
+            </div> 
+            <div class="col-pc-6"> 
+                <!-- input type="number" class="form-control form-control-sm" [(ngModel)]="percentage" step="0.01" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" 
+                placeholder="Enter percentage of progress!" min="1" max="100"  /-->
+                <!-- /^[0-9]+(\.[0-9]{1,2})?$/  ^$|^([0-9]|[1-9][0-9]|[1][0][0])?-->
+                <input type="number" class="form-control form-control-sm"
+                placeholder="Enter percentage of progress!" 
+                [(ngModel)]="percentage" 
+                name="percentage"
+                (keypress)="numberOnly($event)"
+                pattern="^$|^([0-9]|[1-9][0-9]|[1][0][0])?"
+                required 
+                #percentage2 = "ngModel">
+
+                <div *ngIf="percentage2.errors && (percentage2.dirty || percentage2.touched)">
+                    <div [hidden]="!percentage2.errors.pattern" style="color:red;">
+                        Number should be between 0 and 100
+                    </div>
+                </div> 
+            </div> 
+                        
+  
+            <br/>
+            <div class="row"> 
+                    <div class="col-12"><span style="color:#008060;font-weight: bold">Stop Description </span></div>
+            </div>
+            <div class="col-pc-6"> 
+            <textarea class="form-control" [(ngModel)]="stopDateRemark" rows="5" cols="50" placeholder="Enter Remark"> </textarea> 
+            </div>
+            <button class="btn btn-sm float-left" style="background-color:#008060;color:#fff;font-weight: bold; margin-top: 10px;padding:5px 10px 5px 10px"  (click)="saveStopDate('stoptask')">Save</button>
+   
+            </fieldset>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>
+ 
+<modal id="taskhistory" >
+    <div class="modal modal-hst" >
+        <div class="modal-body col-sm-11 mx-auto">
+            <ul class="mdl-cls justify-content-end">
+                <button class="mdl-cls justify-content-end btn btn-danger btn-sm" (click)="closeModal('taskhistory')">
+                    <i class="fa fa-close"></i>
+                </button>                
+            </ul>
+
+            <fieldset class="border p-2">
+              
+            <legend class="scheduler-border">Task History:</legend> 
+            <div class="container"> 
+                    <table class="table table-bordered"> 
+                        <thead>
+                             <tr>
+                                <th >Start Date</th>
+                                <th >End Date </th>
+                                <th >Revised Start Date</th>
+                                <th >Revised End Date</th>
+                                <th >Percentage</th>
+                                <th >Start Description</th>
+                                <th >Stop Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let hst of (history); let i = index'>
+                                <td>{{hst.startDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                <td>{{hst.endDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                <td>{{hst.revStartDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                <td>{{hst.revEndDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                <td>{{hst.percentage}}</td>
+                                <td>{{hst.startRemark}}</td>
+                                <td>{{hst.remark}}</td>
+                            </tr>
+
+                        </tbody>   
+                    </table>
+                    
+            </div>  
+   
+            </fieldset>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>
+ 

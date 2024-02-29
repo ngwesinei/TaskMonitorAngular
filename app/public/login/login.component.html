@@ -1,0 +1,48 @@
+<div id="home">
+	<div class="row col-sm-12 topbar" style="padding-right: 0px; margin-right: 0px;" >
+		<div class="col-sm-2 scm" > <div class="row scmlogo"></div> </div> 
+		<div class="col-sm-6 main-title" style="padding-right: 5px;"><a>Bespoke Monitoring System</a></div>
+
+		
+
+		<div class="col-sm-3 sri-login-box"> 
+					<div class="text-center error">{{svrErr}}</div>
+					<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="container col-sm-11">
+						<div class="form-group" style="margin-top:5px; margin-bottom: 1rem!important;">
+							<div class="input-group ">
+								<input class="col-md-12 form-control form-control-sm" formControlName="username" id="username" autocomplete="off" style="min-height: 30px;" placeholder="Enter username.">
+								<div class="input-group-append">
+									<div class="input-group-text">
+									  <span class="fa fa-envelope" style="min-width: 17px;"></span>
+									</div>
+								</div>
+							</div>
+							<!-- <span class="input-group-append error" *ngIf="(submitted && loginForm.controls['username'].hasError('required')) || loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched">&nbsp;Username
+							is required</span> -->
+						</div>
+						<div class="form-group" style="margin-bottom: 1rem!important;">
+							<div class="input-group">
+							<input type="password" class="col-md-12 form-control form-control-sm" (keydown.enter)="onSubmit()" formControlName="password" id="pwd" autocomplete="off" style="min-height: 30px;" placeholder="Enter password.">
+							<div class="input-group-append">
+								<div class="input-group-text">
+									<span class="fa fa-lock" style="min-width: 17px;"></span>
+								</div>
+							</div>
+							</div>
+							<!-- <span class="error" *ngIf="(submitted && loginForm.controls['password'].hasError('required')) || loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">&nbsp;Password is required</span> -->
+							
+						</div>	
+					</form>	
+			</div>	
+			<div class="col-sm-1 sri-login-box" style="margin-top:3.5%;position:relative;text-align: center;" > 
+					<div class="form-group"  style="text-align: center; padding-bottom:1rem!important;margin-bottom: 1rem!important;">
+							<div class="input-group"  style="text-align: center;">
+								<button class="btn btn-success" (click)="onSubmit()"
+								style="padding:0px 5px 0px 0px; text-align: center; min-height: 32px;width: 100% !important; margin-right:10px;color:white;background-color: rgb(0,128,96);">Sign In</button>
+							</div>
+					</div>
+			</div>	
+		</div>
+ 
+</div>
+

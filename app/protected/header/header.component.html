@@ -1,0 +1,47 @@
+<div class="row col-sm-12 " style="padding-right: 0px; margin-right: 0px;" *ngIf="isLoggedIn$ | async as isLoggedIn" >
+    <div class="col-sm-2 scm" > <div class="row scmlogo"></div> </div> 
+    <div class="col-sm-7 main-title" style="padding-right: 5px;"><a>Bespoke Monitoring System</a></div>
+    <div class="col-sm-3 logout"> 
+        <nav class="main-header navbar navbar-expand ">  
+            <ul class="navbar-nav ml-auto" >
+                <div class="row col-sm-12"> 
+                    <div class="col-sm-6" *ngIf="reportMenu"> 
+                        <li class="nav-item dropdown" >
+                            <a class="nav-link dropdown-toggle"   style="color:#008060"  data-toggle="dropdown">
+                            <i class="fa fa-list" ></i> Report</a>
+                            <div class="dropdown-menu dropdown-content dropdown-menu-right" style="background-color: #008060; font-size: 0.79rem;">
+                                <a class="dropdown-item " style="color: #fff;" (click)="openPDF('todayreportbyuserrpt')">Today Report by User</a>
+                                <a class="dropdown-item " style="color: #fff;" (click)="openPDF('todaysubmittedrpt')">Today Report</a>
+                                <a class="dropdown-item " style="color: #fff;" (click)="openPDF('overduerpt')">Overdue Report</a>
+                                <a class="dropdown-item " style="color: #fff;" (click)="openPDF('pendingrpt')">Pending Report</a>
+                                <a class="dropdown-item " style="color: #fff;" (click)="openPDF('summaryrpt')">Summary Report</a>
+                                <a class="dropdown-item " style="color: #fff;" (click)="openPDF('todaydetailsrpt')">Sub-Tasks Report</a>
+                                <a class="dropdown-item " style="color: #fff;" (click)="openPDF('dailyleaverpt')">Today Leave Plan Report</a>
+                                <a class="dropdown-item " style="color: #fff;" (click)="openPDF('monthlyleaverpt')">Monthly Leave Plan Report</a>
+                                <a class="dropdown-item " style="color: #fff;" (click)="openPDF('yearlyleaverpt')">Yearly Leave Plan Report</a>
+                                <a class="dropdown-item " style="color: #fff;" (click)="openPDF('yearlysummaryleaverpt')">Yearly Leave Summery Report</a>
+                            </div>        
+                        </li>                        
+                    </div>
+                    <div class="col-sm-6"> 
+                        <li class="nav-item dropdown" >
+                                <a class="nav-link dropdown-toggle"   style="color:#008060"  data-toggle="dropdown">
+                                <i class="fa fa-user-circle" ></i>{{currentUser}}</a>
+                                <div class="dropdown-menu dropdown-content dropdown-menu-right" style="background-color: #008060; font-size: 0.79rem;">
+                                    <a class="dropdown-item" style="color: #fff;" (click)="createTask()"><i class="fa fa-file-text-o" ></i>&nbsp;Create Task</a>
+                                    <a class="dropdown-item" style="color: #fff;" (click)="applyLeave()"><i class="fa fa-file-text-o" ></i>&nbsp;Apply Leave</a>
+                                    <a  *ngIf="passMenu" class="dropdown-item" style="color: #fff;" (click)="passwordreset()"><i class="fa fa-cog" ></i>&nbsp;Change Password</a>
+                                    <a  *ngIf="reportMenu" class="dropdown-item" style="color: #fff;" (click)="mastertable()"><i class="fa fa-file-text-o" ></i>&nbsp;Master Table</a>
+                                    <a  class="dropdown-item" style="color: #fff;" (click)="taskboard()"><i class="fa fa-file-text-o" ></i>&nbsp;Task Board</a>
+                                    <a class="dropdown-item" style="color: #fff;" (click)="onLogout()"> <i class="fa fa-sign-out" ></i>&nbsp;Logout</a>
+                                </div>
+                                
+                        </li>
+                    </div>
+                   
+                </div>
+            </ul> 
+        </nav>                          
+                   
+    </div>
+</div>

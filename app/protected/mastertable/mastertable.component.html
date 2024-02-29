@@ -1,0 +1,88 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <div id="home"> <br><br><br><br>
+            <div class="row">
+                <div class="tasktype">
+                     <div class="row"> 
+                        <div class="col-sm-12 form-group text-right">
+                            <button class="btn btn-danger btn-sm float-right" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;" (click)="deleteValue()" [disabled]="!taskList$"><i class="fa fa-trash"></i> Remove</button>
+                            <button class="btn btn-sm float-right" style="font-family: Arial, Helvetica, sans-serif;background-color:#008060;color:#fff;font-weight: bold;margin-right: 5px;"  [disabled]="!taskList$" (click)="saveValue()"><i class="fa fa-save"></i> Save</button>
+                            <button class="btn btn-sm float-right"  style="font-family: Arial, Helvetica, sans-serif;background-color:#008060;color:#fff;font-weight: bold;margin-right: 5px;" (click)="addNewValue()"><i class="fa fa-plus"></i> Add New Data</button>           
+                        </div>            
+                     </div>
+                </div>
+            </div>
+            <div class="container">
+                    <div class="taskform tbl-div form-group">
+                        <br>
+                        <table datatable [dtOptions]="dtOptions"  class="table table-bordered table-hover table-sm table-input table-striped task-tbl_filter tbl-col-15" *ngIf="taskList$" id="task-tbl"> 
+                            <thead>
+                            <tr style="color: #008060;font-weight: bold;">
+                                <th class="hidden" style="display: none;"></th>
+                                <th class="col-pc-1" data-orderable="false">
+                                  <input type="checkbox" (change)="checkAllList($event)">
+                                </th>   
+                                 
+                                <th class="col-pc-4" style="font-family: Arial, Helvetica, sans-serif;">Action</th>  
+                                <th class="col-pc-6" style="font-family: Arial, Helvetica, sans-serif;">Table Type</th>
+                                <th class="col-pc-6" style="font-family: Arial, Helvetica, sans-serif;">Table Name</th>
+                                <th class="col-pc-6" style="font-family: Arial, Helvetica, sans-serif;">Table Values</th>
+                                <th class="col-pc-6"style="font-family: Arial, Helvetica, sans-serif;">Table Description</th>
+                                <th class="col-pc-6" style="font-family: Arial, Helvetica, sans-serif;">Application Name</th>
+                               
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor='let ls of (taskList$); let i = index' [ngClass]="{
+                                    'error' : ls.err
+                                 }">
+                                    
+                                 <td class="hidden" style="display:none;">{{ls.tableType}}</td> 
+                                    <td>
+                                        <input type="checkbox" [(checked)]="ls.checkFlag" (change)="checkOnels(ls, $event)">
+                                    </td>    
+                                    <td>
+                                        <!-- <span *ngIf="enableEditIndex != i"> -->
+                                        <div class="input-group"> 
+                                                    
+                                           
+                                            <i *ngIf="(i != enableEditIndex || enableEditIndex == null) && ls.internalId " class="fa fa-edit" style="color: #008060; font-size: 18px;" (click)="enableEditMethod($event, i, ls)" ></i> 
+                                            <i *ngIf="(ls.internalId && enableEditIndex != i )|| (ls.internalId && !enableEdit)" class="fa fa-trash" style="color: #dc3545; font-size: 18px;"  (click)="deleteRow($event, i, ls)"></i>
+                                            
+                                        </div> 
+                                        <!-- </span> -->  
+                                    </td> 
+                                   
+                                    
+                                    <td>
+                                        <span *ngIf="(ls.internalId && enableEditIndex != i )|| (ls.internalId && !enableEdit)">{{ls.tableType}}</span>
+                                        <input  class="form-control form-control-sm"  [(ngModel)]="ls.tableType" *ngIf="(enableEdit && enableEditIndex == i) || !ls.internalId "/>                        
+                                    </td>
+                                    <td>
+                                        <span *ngIf="(ls.internalId && enableEditIndex != i )|| (ls.internalId && !enableEdit)">{{ls.tableName}}</span>
+                                        <input  class="form-control form-control-sm"  [(ngModel)]="ls.tableName" *ngIf="(enableEdit && enableEditIndex == i) || !ls.internalId "/>                        
+                                    </td>
+                                    <td>
+                                        <span *ngIf="(ls.internalId && enableEditIndex != i )|| (ls.internalId && !enableEdit)">{{ls.tableValue}}</span>
+                                        <input  class="form-control form-control-sm"  [(ngModel)]="ls.tableValue" *ngIf="(enableEdit && enableEditIndex == i) || !ls.internalId "/>                        
+                                    </td>
+                                    <td>
+                                        <span *ngIf="(ls.internalId && enableEditIndex != i )|| (ls.internalId && !enableEdit)">{{ls.tableDESC}}</span>
+                                        <input  class="form-control form-control-sm"  [(ngModel)]="ls.tableDESC" *ngIf="(enableEdit && enableEditIndex == i) || !ls.internalId "/>                        
+                                    </td>
+                                    <td>
+                                        <span *ngIf="(ls.internalId && enableEditIndex != i )|| (ls.internalId && !enableEdit)">{{ls.application}}</span>
+                                        <input  class="form-control form-control-sm"  [(ngModel)]="ls.application" *ngIf="(enableEdit && enableEditIndex == i) || !ls.internalId "/>                        
+                                    </td>
+                                  
+                      
+                                  
+                                </tr>
+                            </tbody>
+                        </table>
+                   </div>
+
+            </div>
+        </div>
+    </section>
+</div>   

@@ -1,0 +1,230 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <div id="home">
+            <br><br>
+            <form [formGroup]="leaveApplyForm" class='tasktype row'>
+                <div class="row col-sm-6">
+                    <div class="col-sm-6 text-left row">
+                        <label class="col-sm-5" style="color: #008060;font-weight: bold;">Leave Type:<span class="error">*</span></label>
+                        <div class="input-group-append col-sm-7">                                     
+                            <select class="form-control form-control-sm" formControlName="leaveType">
+                                <option value='' selected>Select Type</option>
+                                <option *ngFor="let type of leaveType" value={{type.tableValue}}>
+                                    {{type.tableName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 text-left row">
+                        <label class="col-sm-5" style="color: #008060;font-weight: bold;">Leave Status:<span class="error">*</span></label>
+                        <div class="input-group-append col-sm-7">                                     
+                            <select class="form-control form-control-sm" formControlName="leaveStatus">
+                                <option value='' selected>Select Status</option>
+                                <option *ngFor="let s of leaveStatus" value={{s.tableValue}}>
+                                    {{s.tableName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div> 
+                <div class="row col-sm-6">
+                    <div class="col-sm-6 text-left row">
+                        <label class="col-sm-5" style="color: #008060;font-weight: bold;">Leave Mode:<span class="error">*</span></label>
+                        <div class="input-group-append col-sm-7">                                     
+                            <select class="form-control form-control-sm" formControlName="leaveMode">
+                                <option value='' selected>Select Status</option>
+                                <option *ngFor="let s of leaveMode" value={{s.tableValue}}>
+                                    {{s.tableName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 text-left row" style="padding-right:0px">
+                        <label class="col-sm-5" style="color: #008060;font-weight: bold;">Apply Date:<span class="error">*</span></label>
+                        <div class="input-group-append col-sm-7" style="padding-right: 0px">                                     
+                            <input class="shadow-input" formControlName="startDate" [owlDateTime]="dt1" (ngModelChange)="changeStartDate()" [owlDateTimeFilter] = 'disabledWeekend'>
+                            <input class="form-control form-control-sm" placeholder="From" style="min-width: 100px"
+                                    [owlDateTimeTrigger]="dt1" [value]="leaveApplyForm.value.startDate | date:'dd/MM/yyyy'">  
+                            <owl-date-time #dt1 [pickerType]="'calendar'" ></owl-date-time>
+                            <input class="shadow-input" formControlName="endDate" [owlDateTime]="dt2" [max]="maxDate" [owlDateTimeFilter] = 'disabledWeekend' >
+                            <input class="form-control form-control-sm" placeholder="To" style="min-width: 100px" 
+                                    [owlDateTimeTrigger]="dt2" [value]="leaveApplyForm.value.endDate | date:'dd/MM/yyyy'">  
+                            <owl-date-time #dt2 [pickerType]="'calendar'" ></owl-date-time> 
+                        </div>
+                    </div>
+            </div>
+            <!-- --> <br><br>
+            <div class="row col-sm-6">
+                <div class="col-sm-12 text-left row">
+                    <label class="col-sm-2" style="color: #008060;font-weight: bold;">Remark:<span class="error">*</span></label>
+                    <div class="input-group-append col-sm-9 text-left" style="margin-left: 18px;">                                     
+                        <textarea rows=3 col='50' class="col-sm-12 form-control text-left" formControlName="remark"></textarea>
+                    </div>
+                </div>
+                
+            </div> 
+            <div class="row col-sm-6">
+                <div class="col-sm-6 text-left row">
+                    <label class="col-sm-5" style="color: #008060;font-weight: bold;">Employee Selection:</label>
+                    <div class="input-group-append col-sm-7">                                     
+                        <select class="form-control form-control-sm" formControlName="employeelist">
+                            <option value='' selected>Select Employee</option>
+                            <option *ngFor="let emp of employeelist" value={{emp.employeeNo}}>
+                                {{emp.fullName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6 form-group text-right" style="margin:50px 0px 0px 320px; padding-right:0px;" >
+                        <button class="btn btn-sm float-right" style="background-color:#008060;color:#fff;font-weight: bold;" (click)="applyLeave()"><i class="fa fa-save"></i>Apply Leave</button>
+                </div>
+            </div>
+         <!--  <div class="row col-sm-12">
+                <div class="col-sm-6 text-left row">
+                    <label class="col-sm-2" style="color: #008060;font-weight: bold;">Remark: </label>
+                    <div class="input-group-append col-sm-7">                                     
+                        <textarea rows=3 class="col-sm-12" formControlName="remark"></textarea>
+                    </div>
+                </div>
+                <div class="col-sm-6 form-group text-right" style="padding-top: 50px;">
+                    &nbsp;  <button class="btn btn-sm float-right" style="background-color:#008060;color:#fff;font-weight: bold;" (click)="applyLeave()"><i class="fa fa-save"></i> Apply Leave</button>           
+                </div> 
+            </div> -->
+            
+            </form>
+            <div class="col-sm-12">
+                <div class="col-sm-10">
+                <div class="col-sm-5 text-left row">
+                    <label style="color: #008060;font-weight: bold;"> Select Month: </label>
+                    <div class="input-group-append col-sm-6">
+                        &nbsp; &nbsp; &nbsp; &nbsp;<input autocomplete="off" [(ngModel)]="monthYear" class="form-control" name="date" bsDatepicker [bsConfig]="{dateInputFormat: 'MM-YYYY'}" 
+                        (onShown)="openCalendar($event)" (ngModelChange)="changeMonth()">
+                     </div>
+                </div>
+                </div>
+                <br/>
+                <div class="col-sm-12">
+                <table datatable class="table table-bordered table-hover table-sm table-input table-striped" id="leave-tbl" *ngIf="leaveList"> 
+                    <thead>
+                    <tr style="color: #008060;font-weight: bold;">                    
+                        <th class="col-pc-6">Action</th>  
+                        <th class="col-pc-6">Leave Type.</th>
+                        <th class="col-pc-6">Leave Status</th>
+                        <th class="col-pc-20">Leave Mode</th>
+                        <th class="col-pc-6">Start Date</th>
+                        <th class="col-pc-6">End Date</th>  
+                        <th class="col-pc-6">Employee Name</th>  
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor='let ls of (leaveList); let i = index' >
+                            <td>
+                                <i class="fa fa-file-text-o" style="color: #008060; font-size: 18px;" aria-hidden="true" (click)="getRemark('remark', ls, i)"></i> &nbsp;&nbsp;
+                                <i *ngIf="(ls.internalId && enableEditIndex != i )|| (ls.internalId && !enableEdit)" class="fa fa-edit" style="color: #008060; font-size: 18px;" (click)="enableEditMethod($event, i, ls)" ></i>&nbsp;
+                                <i *ngIf="(ls.internalId && enableEditIndex != i )|| (ls.internalId && !enableEdit)" class="fa fa-trash" style="color: #dc3545; font-size: 18px;" (click)="deleteLeave($event, i, ls)" ></i>&nbsp;
+                                <i *ngIf="(enableEdit && enableEditIndex == i) || !ls.internalId" class="fa fa-save" style="color: #008060; font-size: 18px;" (click)="updateLeave($event, i, ls)" ></i>&nbsp;
+                            </td>
+                            <td>
+                                <span *ngIf="(ls.internalId && enableEditIndex != i )|| (ls.internalId && !enableEdit)">{{ls.leaveType}}</span>
+                                <select class="form-control form-control-sm col-sm-12"   [(ngModel)]="ls.leaveType"  *ngIf="(enableEdit && enableEditIndex == i)|| !ls.internalId">
+                                    <option value='' selected>Select Type</option>
+                                    <option *ngFor="let type of leaveType;let i = index;" value={{type.tableValue}}>
+                                        {{type.tableName}}
+                                    </option>
+                                </select>
+                            </td>
+                            <td>
+                                <span *ngIf="(ls.internalId && enableEditIndex != i )|| (ls.internalId && !enableEdit)">{{ls.leaveStatus}}</span>
+                                <select class="form-control form-control-sm col-sm-12"   [(ngModel)]="ls.leaveStatus"  *ngIf="(enableEdit && enableEditIndex == i)|| !ls.internalId">
+                                    <option value='' selected>Select Type</option>
+                                    <option *ngFor="let type of leaveStatus;let i = index;" value={{type.tableValue}}>
+                                        {{type.tableName}}
+                                    </option>
+                                </select>
+                            </td>
+                            <td>
+                                <span *ngIf="(ls.internalId && enableEditIndex != i )|| (ls.internalId && !enableEdit)">{{ls.leaveModeDesc}}</span>
+                                <select class="form-control form-control-sm col-sm-12"   [(ngModel)]="ls.leaveMode"  *ngIf="(enableEdit && enableEditIndex == i)|| !ls.internalId">
+                                    <option value='' selected>Select Type</option>
+                                    <option *ngFor="let type of leaveMode;let i = index;" value={{type.tableValue}}>
+                                        {{type.tableName}}
+                                    </option>
+                                </select>
+                            </td>
+                            <td>
+                                <span *ngIf="(ls.internalId && enableEditIndex != i )|| (ls.internalId && !enableEdit)">{{ls.startDate | date:'dd/MM/yyyy'}}</span>
+                                <ng-container *ngIf="(enableEdit && enableEditIndex == i) || !ls.internalId">                                   
+                                    <input class="shadow-input" [(ngModel)]="ls.startDate" [owlDateTime]="dt1" [owlDateTimeFilter] = 'disabledWeekend'>
+                                    <input class="form-control form-control-sm" placeholder="Choose Date&Time"
+                                            [owlDateTimeTrigger]="dt1" [value]="ls.startDate | date:'dd/MM/yyyy'">  
+                                    <owl-date-time #dt1 [pickerType]="'calendar'"></owl-date-time> 
+                                </ng-container>
+                            </td>
+                            <td> 
+                                <span *ngIf="(ls.internalId && enableEditIndex != i )|| (ls.internalId && !enableEdit)">{{ls.endDate | date:'dd/MM/yyyy'}}</span>
+                                <ng-container *ngIf="(enableEdit && enableEditIndex == i) || !ls.internalId">
+                                    <input class="shadow-input" [(ngModel)]="ls.endDate" [owlDateTime]="dt2" [max]="tableMaxDate" [owlDateTimeFilter] = 'disabledWeekend'>
+                                    <input class="form-control form-control-sm" placeholder="Choose Date&Time"
+                                            [owlDateTimeTrigger]="dt2" [value]="ls.endDate | date:'dd/MM/yyyy'">  
+                                    <owl-date-time #dt2 [pickerType]="'calendar'"></owl-date-time> 
+                                </ng-container>
+                            </td>
+                            <td>
+                                {{ls.employeeFullName == 'null' ? '' : ls.employeeFullName}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+                
+                <br/><br/>
+
+                <table class='tbl-calendar'>
+                    <tr>
+                        <th width="14.2%">Mon</th>
+                        <th width="14.2%">Tue</th>
+                        <th width="14.2%">Wed</th>
+                        <th width="14.2%">Thu</th>
+                        <th width="14.2%">Fri</th>
+                        <th width="14.2%">Sat</th>
+                        <th width="14.2%">Sun</th>
+                    </tr>
+                    <tr *ngFor='let month of (dayList); let i = index'>                        
+                        <td *ngFor='let week of (month.dtoList); let j = index'>
+                            {{week.day}}                           
+                           <span *ngFor='let leave of week.empAtt;' style="color: blue">
+                                <br/>
+                                {{leave.employeeFullName}} {{'['+ (leave.leaveType | titlecase) + ' | ' + leave.leaveMode + ']'}}
+                           </span>                           
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </section>
+</div>
+
+  
+<modal id="remark">
+    <div class="modal">
+        <div class="modal-body col-sm-11 mx-auto">
+            <ul class="mdl-cls justify-content-end">
+                <button class="mdl-cls justify-content-end btn btn-danger btn-sm" (click)="closeModal('remark')">
+                    <i class="fa fa-close"></i>
+                </button>                
+            </ul>
+            <fieldset class="border p-2">
+            <legend class="scheduler-border">Remark:</legend>  
+            <div class="col-pc-6"> 
+            <textarea class="form-control" [disabled]="!enableEdit" [(ngModel)]="globalRemark" rows="15" cols="50" > </textarea> 
+            </div>
+            <button class="btn btn-sm float-left" style="background-color:#008060;color:#fff;font-weight: bold; margin-top: 10px;padding:5px 10px 5px 10px"  [disabled]="!leaveList" (click)="saveRemark('remark')">OK</button>
+   
+            </fieldset>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+ </modal>
+    

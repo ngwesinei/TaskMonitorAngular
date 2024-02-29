@@ -1,0 +1,177 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <div id="home"> 
+            <br><br><br>
+
+                <div class="row col-sm-12 center">
+                <div class="row col-sm-12 center">
+                    <div class="row col-sm-12 center">
+                        <div class="col-sm-2  text-left">
+                                <label style="color: #008060;font-weight: bold;font-family: Arial, Helvetica, sans-serif;">Select Application</label>
+                        </div>
+                        <div class="col-sm-2  text-left">
+                                <select class="form-control form-control-sm col-sm-12" (change)="searchByTask(type)" [(ngModel)]="app" >
+                                    <option value='' selected>Select Apps</option>
+                                    <option *ngFor="let app of application;let i = index;" value={{app.tableValue}}>
+                                        {{app.tableName}}
+                                    </option>
+                                </select>
+                        </div>
+                        <div class="col-sm-2  text-left">
+                                <label style="color: #008060;font-weight: bold;font-family: Arial, Helvetica, sans-serif;">Select Task Type</label>
+                        </div>
+                        <div class="col-sm-3  text-left"> 
+                            <select class="form-control form-control-sm col-sm-8" (change)="searchByTask(type)"  [(ngModel)]="type" >
+                                <option *ngFor="let type of taskType;let i = index;" value={{type.tableValue}}>
+                                    {{type.tableName}}
+                            </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>   
+                </div>
+                <div class="row col-sm-12 center" > 
+                <div cdkDropList class="row col-sm-12 center" >
+                    <div cdkDropListGroup class="row col-sm-12 center" >
+                        
+                        <div class="col-sm-2 taskcard" >
+                                <div class="col-sm-12 taskheader">IN PROGRESS </div>
+                                <div 
+                                cdkDropList
+                                [cdkDropListData]="taskProgress"
+                                class="task-list"
+                                (cdkDropListDropped)="drop($event,'Work In Progress')">
+                                    <div class="task-box" *ngFor="let progress of taskProgress;let i=index"  (click)="taskDetail('taskdetail',progress)" on-mouseover="taskover(progress.full_NAME,progress.internalId)" on-mouseleave="taskleave();" cdkDrag>
+                                        <p style="text-align: left;">  {{progress.ticket}}  
+                                        <span  class="row" style="color: #008060;margin-left: 4px !important;" *ngIf="interId===progress.internalId"><br> {{fullname}}</span>
+                                        </p> 
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-sm-2 taskcard"> 
+                                <div class="col-sm-12 taskheader">PENDING </div>
+                                <div 
+                                cdkDropList
+                                [cdkDropListData]="taskPending"
+                                class="task-list"
+                                (cdkDropListDropped)="drop($event,'Pending')">
+                                <div class="task-box" *ngFor="let pending of taskPending;" (click)="taskDetail('taskdetail',pending)" on-mouseover="taskover(pending.full_NAME,pending.internalId)" on-mouseleave="taskleave();" cdkDrag> 
+                                    <p style="text-align: left;">  {{pending.ticket}}  
+                                        <span  class="row" style="color: #008060;margin-left: 4px !important;" *ngIf="interId===pending.internalId"><br> {{fullname}}</span>
+                                    </p> 
+                                </div>
+                                </div>
+                        </div> 
+                        <div class="col-sm-2 taskcard"><div class="col-sm-12 taskheader">PENDING DISCUSSION</div>
+                                <div 
+                                cdkDropList
+                                [cdkDropListData]="pendingDisc"
+                                class="task-list"
+                                (cdkDropListDropped)="drop($event,'Pending Discussion')">
+                                <div class="task-box" *ngFor="let disc of pendingDisc" (click)="taskDetail('taskdetail',disc)" on-mouseover="taskover(disc.full_NAME,disc.internalId)" on-mouseleave="taskleave();" cdkDrag>
+                                    <p style="text-align: left;">  {{disc.ticket}}  
+                                            <span  class="row" style="color: #008060;margin-left: 4px !important;" *ngIf="interId===disc.internalId"><br> {{fullname}}</span>
+                                     </p>
+                                </div>
+                                </div>
+                        </div>
+                        <div class="col-sm-2 taskcard"><div class="col-sm-12 taskheader">PENDING USER </div>
+                                <div 
+                                cdkDropList
+                                [cdkDropListData]="pendingUser"
+                                class="task-list"
+                                (cdkDropListDropped)="drop($event,'Pending User')">
+                                <div class="task-box" *ngFor="let user of pendingUser;" (click)="taskDetail('taskdetail',user)" on-mouseover="taskover(user.full_NAME,user.internalId)" on-mouseleave="taskleave();" cdkDrag>
+                                        <p style="text-align: left;">  {{user.ticket}}  
+                                                <span  class="row" style="color: #008060;margin-left: 4px !important;" *ngIf="interId===user.internalId"><br> {{fullname}}</span>
+                                        </p>
+                                </div>
+                                </div>
+                        </div>
+                        <div class="col-sm-3 taskcard"> <div class="col-sm-12 taskheader">CLOSED</div>
+                            <div 
+                                cdkDropList
+                                [cdkDropListData]="taskClosed"
+                                class="task-list"
+                                (cdkDropListDropped)="drop($event,'Closed')">
+                                <div  class="task-box" *ngFor="let close of taskClosed" (click)="taskDetail('taskdetail',close)" on-mouseover="taskover(close.full_NAME,close.internalId)" on-mouseleave="taskleave();" cdkDrag>
+                                        <p style="text-align: left;">  {{close.ticket}}  
+                                                <span  class="row" style="color: #008060;margin-left: 4px !important;" *ngIf="interId===close.internalId"><br> {{fullname}}</span>
+                                        </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<modal id="taskdetail" >
+        <div class="modal modal-detail" >
+            <div class="modal-body col-sm-11 mx-auto" *ngFor="let det of taskdetail">
+                <ul class="mdl-cls justify-content-end">
+                    <button class="mdl-cls justify-content-end btn btn-danger btn-sm" (click)="closeModal('taskdetail')">
+                        <i class="fa fa-close"></i>
+                    </button>                
+                </ul>
+    
+                <fieldset class="border p-2">
+                  
+                <legend class="scheduler-border rightcol" >{{det.application}}</legend> 
+                <div class="container"> 
+                    <div class="row" >
+                        
+                        <div class="col-6 panel">
+                                <div class="col-12 leftcol">Start Date </div>
+                                <div class="col-12">{{det.startDate | date:'dd/MM/yyyy HH:mm:ss'}}</div>
+                        </div>
+                        <div class="col-6 panel">
+                                <div class="col-12 leftcol">End Date </div>
+                                <div class="col-12">{{det.endDate  | date:'dd/MM/yyyy HH:mm:ss'}}</div>
+                        </div>
+                        <div class="col-6 panel">
+                                <div class="col-12 leftcol">Duration</div>
+                                <div class="col-12">{{det.duration}} </div>
+                        </div>
+                        <div class="col-6 panel">
+                                <div class="col-12 leftcol">Priority</div>
+                                <div class="col-12">{{det.priorityDesc}}</div>
+                        </div>
+                        <div class="col-6 panel">
+                                <div class="col-12 leftcol">Difficulty</div>
+                                <div class="col-12">{{det.difficulty}}</div>
+                        </div>
+                        <div class="col-6 panel">
+                                <div class="col-12 leftcol">Status</div>
+                                <div class="col-12">{{det.status}}</div>
+                        </div>
+                        <div class="col-12 panel">
+                                <div class="col-12 leftcol"> Short Description:  </div>
+                                <div class="col-12"> {{det.ticket}} </div>
+                            </div>
+                        <!-- div class="col-6 leftpanel">
+                            <div class="col-12 leftcol">Start Date</div>
+                            <div class="col-12">{{det.startDate | date:'dd/MM/yyyy'}}</div>
+                            <div class="col-12 leftcol">End Date</div>
+                            <div class="col-12">{{det.endDate  | date:'dd/MM/yyyy'}}</div>
+                            <div class="col-12 leftcol">Duration</div>
+                            <div class="col-12">{{det.duration}} </div>
+                            <div class="col-12 leftcol">Priority</div>
+                            <div class="col-12">{{det.priorityDesc}}</div>
+                            <div class="col-12 leftcol">Difficulty</div>
+                            <div class="col-12">{{det.difficulty}}</div>
+                            <div class="col-12 leftcol">Status</div>
+                            <div class="col-12">{{det.status}}</div>
+                        </div -->
+                    </div>
+        
+                </div>  
+       
+                </fieldset>
+            </div>
+        </div>
+        <div class="modal-background"></div>
+    </modal>

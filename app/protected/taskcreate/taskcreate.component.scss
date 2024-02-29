@@ -1,0 +1,235 @@
+p{font-family: Arial, Helvetica, sans-serif;}
+.topbar{
+    width:auto;
+    min-width : 100%;
+    min-height : 100px;
+    height:auto;
+    background-color:#ffffff;
+    opacity:0.8;
+    /* margin-left: 0px; */
+   } 
+   .scmlogo{ padding:10px 10px 10px 10px; 
+    width:70%; height:100%; margin-top:10px;margin-left:10px;
+    background-image: url(../../../assets/img/scm_logo.png);
+    background-repeat: no-repeat;background-size:contain; }
+   .main-title{
+     font-family: Arial , Helvetica, sans-serif;
+     font-size:26px; color:rgb(0,128,96);
+     font-weight: bold; padding:20px 0px 10px 5px;
+     text-align:center;
+    }
+    .logout{
+        font-family: Arial , Helvetica, sans-serif;
+        font-size:14px; color:rgb(0,128,96);
+        font-weight: bold; padding:20px 15px 10px 0px;
+        text-align:right;
+    }
+    
+    element.style {
+      height: 300px;
+   }
+
+   
+    .proj-title{
+      text-align: center;
+      font-size: 1.05rem;
+      font-weight: bold;
+    }img{
+      max-height : 50px;
+      max-width : 149px;
+      min-width: 70px;
+      padding-top: 7px;
+      padding-left: 20px;
+    }
+    .proj-title{
+        margin-top: 5%;
+    }
+   
+    @media screen and (min-width: 575px) {
+     .topbar{
+         margin-left: 0px;
+         padding-left:7px;
+       }       
+    }
+   
+    @media screen and (max-width: 575px) {
+     .topbar{       
+         padding-left: 7px;
+       }  
+       .sri-login-box{
+         padding-left: 12px;
+       }     
+    }
+    
+    @media screen and (min-width: 1050px) {
+     
+      #home{
+        height: 100vh;
+       // background: url(../../../assets/img/loginBack3.jpg); 
+        background-repeat: no-repeat;
+        background-size: 100vw 100vh;
+      }
+      .login-container{
+        top: 45vh; background-color:rgb(191,181,181); color: rgb(50, 102, 83); border-radius: 3px;      
+      }  
+       
+    }
+    @media screen and (max-width: 1050px){
+      #home{
+        height: 100vh;
+        background: #ffffff;//url(../../../assets/img/loginBack3.jpg); 
+        background-repeat: no-repeat;
+      }
+      .login-container{
+        top: 20vh; background-color:rgb(191,181,181); color: rgb(50, 102, 83); border-radius: 3px; 
+      }
+      .scm{ background-color: #008060;width:100%;min-height:80px;}
+      .scmlogo{ padding:10px 0px 10px 10px; width:90%;height:70%;
+        background: url(../../../assets/img/scmwhite.png);
+        background-repeat: no-repeat; position:relative;background-size:contain;
+      } 
+      .main-title{
+        font-family: Arial , Helvetica, sans-serif;
+        font-size:18px; color:rgb(0,128,96);
+        font-weight: bold; padding:20px 0px 10px 5px;
+       }
+   
+      @media screen and (min-height: 550px) {
+        #home{
+        background-size: 1400px 960px; 
+        }
+        .scm{ background-color: #008060;width:100%;min-height:80px;}
+        .scmlogo{ padding:10px 0px 10px 10px; width:90%;height:70%; 
+          background: url(../../../assets/img/scmwhite.png);
+          background-repeat: no-repeat;position:relative;background-size:contain; }
+        
+        .main-title{
+          font-family: Arial , Helvetica, sans-serif;
+          font-size:18px; color:rgb(0,128,96);
+          font-weight: bold; padding:20px 0px 10px 5px;
+         }
+      }
+    }
+
+
+$color-primary: rgba(67,66,93,255);
+$color-text: #43425d;
+$color-text-lite: rgba(#4d4f5c,.5);
+
+.login-container {
+    font-family: "Source Sans Pro";
+    .sidebar {
+        background-image: url(/assets/images/group_4.png), 
+              linear-gradient(-136.82353093203deg , rgba(36,35,72,255) 0%, rgba(90,85,170,255) 100%);
+        background-size: cover;
+        min-height: 100vh;
+    }
+
+    .title, a {
+        color: $color-text;
+    }
+
+    .title {
+        font-weight: bold;
+        letter-spacing: 5px;
+    }
+
+    .tag {
+        color: $color-text-lite
+    }
+
+    .btn-main {
+        background: $color-primary;
+    }
+
+    .btn-main-outline {
+        border: 1px solid $color-primary
+    }
+
+}
+/*Nav Drop down*/ 
+.navbar-nav > li > .dropdown-menu { background-color: #C8E6C9; //#008060;
+ }
+
+.dropdown-item.active, .dropdown-item:active {
+  color: #008060 !important; font-weight: bold !important;
+  text-decoration-style:double !important;
+  background-color: #C8E6C9 !important;
+}
+.dropdown-item:focus, .dropdown-item:hover {
+  color: #008060 !important; font-weight: bold !important;
+  text-decoration-style: double !important;
+  background-color: #C8E6C9 !important;
+}
+nav { 
+  border-bottom: 0px !important;
+}
+.tasktype{
+  width:100% ;
+  margin:0px 15px 15px 15px; 
+  
+  padding: 10px;
+}
+.taskform{
+  width:100% ;
+  margin:0px 15px 10px 15px; 
+  min-height: 780px; 
+  overflow: auto;
+  height: auto !important;
+  padding: 10px;
+  border: 0.1px solid #e3e3e3;
+  border-radius: 6px;
+  flex-direction: column;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+   box-shadow: inset 0 1px 1px rgba(51, 40, 40, 0.05); 
+  box-shadow: 0 3px 12px -6px rgba(0, 0, 0, 0.54); 
+}
+/* Added Date popup */
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+  z-index: 99999 !important;
+}
+.modal-cmmt {
+  width: 1500px !important;
+  height: 650px !important;
+  margin: auto !important;
+}
+.modal-str {
+  width: 750px !important;
+  height: 350px !important;
+  margin: auto !important;
+}
+.modal-stp {
+  min-width: 1500px !important;
+  min-height: 750px !important;
+  margin: auto !important;
+}
+.modal-hst {
+  min-width: 1500px !important;
+  min-height: 550px !important;
+  margin: auto !important;
+}
+th{
+  color:#008060;font-weight: bold;
+}
+
+.label{
+  color: #008060;font-weight: bold;font-family: Arial, Helvetica, sans-serif;
+}
+.calendar{
+  width: 90px;height:30px; border: 1px solid #dddddd;margin-right: 10px;
+}
+.status{
+  width: 120px;height:25px; border: 1px solid #dddddd;margin-right: 10px;
+}
+.calendar :focus{ 
+  box-shadow:0 0 5px rgba(81, 203, 238, 1);
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #bff5da;
+ }
+.btn_search{
+  font-family: Arial, Helvetica, sans-serif;
+  background-color:#008060;color:#fff;
+  font-weight: bold;margin-right: 5px;
+}
